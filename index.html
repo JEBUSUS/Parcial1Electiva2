@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi primer CI/CD con Surge</title>
+
+  <!-- Fuente web liviana -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --primary: #0066ff;
+      --dark: #1e1e1e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    main {
+      flex: 1;
+      display: grid;
+      place-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    p  { font-size: 1.125rem; margin-bottom: 2rem; }
+    a.btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    a.btn:hover { background: #0052cc; }
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Deploy automático 🚀</h1>
+  </header>
+
+  <main>
+    <p>Esta página se publica con <strong>Surge.sh</strong> cada vez que hago un push a la rama <code>main</code>.</p>
+    <a class="btn" href="https://surge.sh" target="_blank" rel="noopener">Aprende más sobre Surge</a>
+  </main>
+
+  <footer>
+    © <span id="year"></span> — Hecho por mí con CI/CD
+  </footer>
+
+  <script>
+    // Actualiza dinámicamente el año en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
