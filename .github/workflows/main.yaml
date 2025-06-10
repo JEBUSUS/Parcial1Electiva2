@@ -1,0 +1,33 @@
+name: Deploy to Surge
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Surge
+        run: npm install -g surge
+
+      - name: Publish to Surge
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          DOMAIN: ${{ secrets.SURGE_DOMAIN }}
+        run: |
+          if [ -z "$DOMAIN" ]; then
+            surge ./ --project ./ --token $SURGE_TOKEN --user $SURGE_LOGIN
+          else
+            surge ./ --project ./ --domain $DOMAIN --token $SURGE_TOKEN --user $SURGE_LOGIN
+          fi
